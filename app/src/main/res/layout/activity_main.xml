@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.vendetta.facmat.MainActivity"
+    android:background="@drawable/backgroundapp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/purpleborder">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="256px"
+        android:layout_height="256px"
+        android:src="@drawable/logoapp" />
+
+        <TextView
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FACMAT!"
+            android:textColor="@color/white"
+            android:textSize="32dp"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:layout_gravity="center" />
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/home_playbtn"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center"
+        android:layout_width="400px"
+        android:layout_height="400px"
+        android:scaleType="fitXY"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@drawable/play" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="bottom">
+        <ImageButton
+            android:id="@+id/infoTeam"
+            android:layout_width="128px"
+            android:layout_height="128px"
+            android:scaleType="fitXY"
+            android:src="@drawable/information"
+            android:background="?android:attr/selectableItemBackground" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Feria Cientifica 2022 Ⓒ" />
+        </LinearLayout>
+</LinearLayout>
+
+</LinearLayout>
