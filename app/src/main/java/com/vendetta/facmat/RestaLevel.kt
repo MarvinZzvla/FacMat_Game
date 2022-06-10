@@ -1,16 +1,37 @@
 package com.vendetta.facmat
 
+import android.content.Intent
+import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import kotlinx.android.synthetic.main.activity_resta_level.*
+import kotlinx.android.synthetic.main.activity_resta_level.temporizador
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 class RestaLevel : AppCompatActivity() {
     var finalResult = 0
     var finalPosition = 0
+        /*Cambios */
+    var acertadasPuntuacion = 0
+    var erradasPuntuacion = 0;
+    var totalPuntuacion = 0;
+    lateinit var mySong: MediaPlayer
+    lateinit var tempo: CountDownTimer
+    var actualPosition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resta_level)
+
+        /*Cambios*/
+        actualPosition = intent.getIntExtra("actualPosition",20)
+        mySong = MediaPlayer.create(this,R.raw.bgmusic)
+        mySong.seekTo(actualPosition)
+        mySong.isLooping = true;
+        mySong.start()
+
 
         generateProblem()
 
@@ -19,6 +40,39 @@ class RestaLevel : AppCompatActivity() {
         resta_3option.setOnClickListener { var position = 3; makeChoice(position) }
         resta_4option.setOnClickListener { var position = 4;makeChoice(position)}
     }
+        /*Cambios*/
+    override fun onStart() {
+        super.onStart()
+        startTemporizador()
+    }
+
+    fun startTemporizador(){
+        var duration:Long = TimeUnit.MINUTES.toMillis(1)
+        tempo = object : CountDownTimer(duration,1000){
+            override fun onTick(p0: Long) {
+                temporizador.text = String.format(
+                    Locale.ENGLISH,"%02d : %02d", TimeUnit.MILLISECONDS.toMinutes(p0),
+                    (TimeUnit.MILLISECONDS.toSeconds(p0) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(p0))))
+
+            }
+
+            override fun onFinish() {
+                gotoResultado()
+            }
+
+        }
+        tempo.start()
+
+    }
+
+    fun gotoResultado(){
+        Intent(this, Resultado::class.java).apply {
+            this.putExtra("rpuntuacion",acertadasPuntuacion)
+            this.putExtra("fpuntuacion", erradasPuntuacion)
+            this.putExtra("tpuntuacion",totalPuntuacion)
+            startActivity(this)
+        }
+    } /*Cambios*/
 
     fun makeChoice(position: Int){
         if(getResult(position))
@@ -26,6 +80,10 @@ class RestaLevel : AppCompatActivity() {
             var getScore = Integer.parseInt(restaScore.text.toString())
             getScore += 1;
             restaScore.text = getScore.toString()
+            /*Cambios*/
+            totalPuntuacion = getScore
+            acertadasPuntuacion += 1;
+
             generateProblem()
             //HAS GANADO
         }
@@ -35,6 +93,10 @@ class RestaLevel : AppCompatActivity() {
                 getScore -= 1;
             }
             restaScore.text = getScore.toString()
+            /*Cambios*/
+            totalPuntuacion = getScore
+            erradasPuntuacion += 1;
+
             generateProblem()
             //HAS PERDIDO
         }
@@ -77,5 +139,38 @@ class RestaLevel : AppCompatActivity() {
         }
         finalPosition = positionanswer;
         resta_exercise.text = problem
+    }
+
+    /*Cambios*/
+    override fun onResume() {
+        super.onResume()
+        mySong.release()
+        mySong = MediaPlayer.create(this,R.raw.bgmusic)
+        mySong.seekTo(actualPosition)
+        mySong.isLooping = true;
+        mySong.setVolume(0.2f,0.2f)
+        mySong.start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mySong.pause()
+        mySong.release()
+        tempo.cancel()
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mySong.release()
+        tempo.cancel()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Intent(this,Levels::class.java).apply {
+            this.putExtra("actualPosition",mySong.currentPosition)
+            startActivity(this)
+        }
     }
 }

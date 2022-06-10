@@ -77,8 +77,8 @@ class SumaLevel : AppCompatActivity() {
         {
             var getScore = parseInt(sumScore.text.toString())
             getScore += 1;
-            totalPuntuacion = getScore
             sumScore.text = getScore.toString()
+            totalPuntuacion = getScore
             acertadasPuntuacion += 1;
             generateProblem()
             //HAS GANADO
@@ -87,9 +87,9 @@ class SumaLevel : AppCompatActivity() {
             var getScore = parseInt(sumScore.text.toString())
             if(getScore > 0){
             getScore -= 1
-                totalPuntuacion = getScore
             }
             sumScore.text = getScore.toString()
+            totalPuntuacion = getScore
             erradasPuntuacion += 1;
             generateProblem()
             //HAS PERDIDO
