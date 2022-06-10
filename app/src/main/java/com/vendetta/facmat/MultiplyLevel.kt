@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_multiply_level.*
 
+
 class MultiplyLevel : AppCompatActivity() {
     var finalResult = 0
     var finalPosition = 0
@@ -58,6 +59,11 @@ class MultiplyLevel : AppCompatActivity() {
         multiply_2answer.text = (10..30).random().toString()
         multiply_3answer.text = (10..30).random().toString()
         multiply_4answer.text = (10..30).random().toString()
+
+        if(multiply_1answer.text == result.toString() ||
+            multiply_2answer.text == result.toString() ||
+            multiply_3answer.text == result.toString() ||
+            multiply_4answer.text == result.toString()){generateProblem();return}
 
         positionanswer = (1..4).random()
         println("$positionanswer este el numero")

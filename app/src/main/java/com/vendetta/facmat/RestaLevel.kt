@@ -62,6 +62,11 @@ class RestaLevel : AppCompatActivity() {
         resta_3answer.text = (1..100).random().toString()
         resta_4answer.text = (1..100).random().toString()
 
+        if(resta_1answer.text == result.toString() ||
+            resta_2answer.text == result.toString() ||
+            resta_3answer.text == result.toString() ||
+            resta_4answer.text == result.toString()){generateProblem();return}
+
         positionanswer = (1..4).random()
         println("$positionanswer este el numero")
         when (positionanswer){

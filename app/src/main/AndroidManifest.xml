@@ -9,13 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FactMath">
-        <activity android:name="com.vendetta.facmat.DivideLevel"></activity>
-        <activity android:name="com.vendetta.facmat.MultiplyLevel" />
-        <activity android:name="com.vendetta.facmat.RestaLevel" />
-        <activity android:name="com.vendetta.facmat.SumaLevel" />
-        <activity android:name="com.vendetta.facmat.Levels" />
+        <activity android:name=".Resultado"></activity>
+        <activity android:name=".DivideLevel" />
+        <activity android:name=".MultiplyLevel" />
+        <activity android:name=".RestaLevel" />
+        <activity android:name=".SumaLevel" />
+        <activity android:name=".Levels" />
         <activity
-            android:name="com.vendetta.facmat.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

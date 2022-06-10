@@ -81,6 +81,7 @@
         android:textColor="@color/white"
         android:text="Feria Cientifica 2022 Ⓒ" />
         </LinearLayout>
-</LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

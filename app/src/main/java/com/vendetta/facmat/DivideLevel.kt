@@ -12,6 +12,7 @@ class DivideLevel : AppCompatActivity() {
         setContentView(R.layout.activity_divide_level)
 
         generateProblem()
+       
 
         divide_1option.setOnClickListener { var position = 1; makeChoice(position)}
         divide_2option.setOnClickListener {  var position = 2; makeChoice(position)}
@@ -45,13 +46,16 @@ class DivideLevel : AppCompatActivity() {
     fun generateProblem(){
         var fnumber = 0;
         var snumber = 0;
-        fnumber = (10..20).random()
-        snumber = (1..9).random()
+        fnumber = (10..30).random()
+        snumber = (2..9).random()
         if(fnumber < snumber){generateProblem(); return }
+        var restante = fnumber % snumber
+        if (restante != 0){ generateProblem();return}
         finalResult = (fnumber / snumber)
         var problem = "$fnumber ÷ $snumber = ?"
         displayinScreen(problem,finalResult)
     }
+
 
     fun displayinScreen(problem: String, result: Int){
         var positionanswer = 0
@@ -60,6 +64,13 @@ class DivideLevel : AppCompatActivity() {
         divide_2answer.text = (1..30).random().toString()
         divide_3answer.text = (1..30).random().toString()
         divide_4answer.text = (1..30).random().toString()
+
+        //CHECK numeros repetidos
+        if(divide_1answer.text == result.toString() ||
+            divide_2answer.text == result.toString() ||
+            divide_3answer.text == result.toString() ||
+            divide_4answer.text == result.toString()){generateProblem();return}
+
 
         positionanswer = (1..4).random()
         println("$positionanswer este el numero")
