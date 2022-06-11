@@ -5,7 +5,9 @@ import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
 import kotlinx.android.synthetic.main.activity_multiply_level.*
+import kotlinx.android.synthetic.main.activity_multiply_level.cronometroimg
 import kotlinx.android.synthetic.main.activity_multiply_level.temporizador
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -21,6 +23,7 @@ class MultiplyLevel : AppCompatActivity() {
     lateinit var mySong: MediaPlayer
     lateinit var tempo: CountDownTimer
     var actualPosition = 0
+    var iscronometro = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +47,17 @@ class MultiplyLevel : AppCompatActivity() {
     /*Cambios*/
     override fun onStart() {
         super.onStart()
-        startTemporizador()
+
+        iscronometro = intent.getBooleanExtra("iscronometro",false)
+        if(iscronometro){
+            temporizador.visibility = View.VISIBLE;
+            cronometroimg.visibility = View.VISIBLE;
+
+            startTemporizador()
+        } else{
+            temporizador.visibility = View.INVISIBLE
+            cronometroimg.visibility = View.INVISIBLE
+        }
     }
 
     fun startTemporizador(){
@@ -154,14 +167,18 @@ class MultiplyLevel : AppCompatActivity() {
         super.onPause()
         mySong.pause()
         mySong.release()
-        tempo.cancel()
+        if(iscronometro){
+            tempo.cancel()
+        }
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mySong.release()
-        tempo.cancel()
+        if(iscronometro) {
+            tempo.cancel()
+        }
     }
 
     override fun onBackPressed() {

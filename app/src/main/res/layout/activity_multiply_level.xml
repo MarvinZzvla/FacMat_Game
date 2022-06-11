@@ -156,7 +156,7 @@
         app:layout_constraintTop_toTopOf="@+id/multiply_4option" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/cronometroimg"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/cronometro"
@@ -173,8 +173,8 @@
         app:layout_constraintHorizontal_bias="0.9"
         android:textSize="20sp"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintBottom_toBottomOf="@+id/cronometroimg"
+        app:layout_constraintEnd_toStartOf="@+id/cronometroimg"
         app:layout_constraintStart_toEndOf="@+id/multiplyScore"
         app:layout_constraintTop_toTopOf="parent" />
 

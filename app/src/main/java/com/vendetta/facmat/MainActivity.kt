@@ -2,9 +2,12 @@ package com.vendetta.facmat
 
 import android.content.Intent
 import android.media.MediaPlayer
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.util.DisplayMetrics
+import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var mySong:MediaPlayer
@@ -13,6 +16,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+            val displayMetrics = DisplayMetrics()
+            windowManager.defaultDisplay.getMetrics(displayMetrics)
+            val height = displayMetrics.heightPixels
+            val width = displayMetrics.widthPixels
+
+
         home_playbtn.setOnClickListener {
             Intent(this, Levels::class.java).apply {
                 this.putExtra("actualPosition",mySong.currentPosition)
@@ -20,6 +30,13 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+            infoTeam.setOnClickListener {
+                println("INFO")
+                Intent(this, About::class.java).apply {
+                    startActivity(this)
+                }
+            }
+
             mySong = MediaPlayer.create(this,R.raw.bgmusic)
         mySong.isLooping = true;
         mySong.start()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,79 +9,92 @@
     android:background="@drawable/backgroundapp">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-    <LinearLayout
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:background="@drawable/purpleborder">
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="256px"
-        android:layout_height="256px"
-        android:src="@drawable/logoapp" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
 
-        <TextView
-            android:padding="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="FACMAT!"
-            android:textColor="@color/white"
-            android:textSize="32dp"
-            android:fontFamily="sans-serif-black"
-            android:gravity="center"
-            android:layout_gravity="center" />
-    </LinearLayout>
-    <ImageButton
-        android:id="@+id/home_playbtn"
-        android:layout_marginTop="150dp"
-        android:layout_gravity="center"
-        android:layout_width="400px"
-        android:layout_height="400px"
-        android:scaleType="fitXY"
-        android:background="?android:attr/selectableItemBackground"
-        android:src="@drawable/play" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:background="@drawable/purpleborder"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="256px"
+                    android:layout_height="256px"
+                    android:src="@drawable/logoapp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="FACMAT!"
+                    android:textColor="@color/white"
+                    android:textSize="32dp" />
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+    <ImageButton
+        android:id="@+id/home_playbtn"
+        android:layout_width="400px"
+        android:layout_height="400px"
+        android:background="?android:attr/selectableItemBackground"
+        android:scaleType="fitXY"
+        android:src="@drawable/play"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:gravity="bottom">
-        <ImageButton
-            android:id="@+id/infoTeam"
-            android:layout_width="128px"
-            android:layout_height="128px"
-            android:scaleType="fitXY"
-            android:src="@drawable/information"
-            android:background="?android:attr/selectableItemBackground" />
+    <ImageButton
+        android:id="@+id/infoTeam"
+        android:layout_width="128px"
+        android:layout_height="128px"
+        android:background="?android:attr/selectableItemBackground"
+        android:scaleType="fitXY"
+        android:src="@drawable/information"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Feria Cientifica 2022 Ⓒ"
         android:textColor="@color/white"
-        android:text="Feria Cientifica 2022 Ⓒ" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/infoTeam"
+        app:layout_constraintTop_toTopOf="@id/infoTeam"
+        app:layout_constraintHorizontal_bias="0.01"/>
+</android.support.constraint.ConstraintLayout>
