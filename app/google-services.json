@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "782049564306",
+    "project_id": "facmat-66d60",
+    "storage_bucket": "facmat-66d60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782049564306:android:16fa9e4b5a750e2750b84b",
+        "android_client_info": {
+          "package_name": "com.vendetta.facmat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782049564306-m6cub7n0hl7617n11tp9qji7qqm2o5q6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9gTajV6y4tg7Cx3uezubzIVJnj34H3PA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782049564306-m6cub7n0hl7617n11tp9qji7qqm2o5q6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

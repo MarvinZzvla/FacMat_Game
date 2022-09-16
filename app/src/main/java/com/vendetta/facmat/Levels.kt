@@ -3,9 +3,10 @@ package com.vendetta.facmat
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.android.gms.ads.AdRequest
 import kotlinx.android.synthetic.main.activity_levels.*
 import kotlin.properties.Delegates
 
@@ -19,6 +20,9 @@ class Levels : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_levels)
+
+         adViewLevels.apply { this.loadAd(AdRequest.Builder().build()) }
+
 
             actualPosition = intent.getIntExtra("actualPosition",20)
         mySong = MediaPlayer.create(this,R.raw.bgmusic)

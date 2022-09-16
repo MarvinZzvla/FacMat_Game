@@ -3,18 +3,29 @@ package com.vendetta.facmat
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.DisplayMetrics
 import android.view.ViewGroup
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var mySong:MediaPlayer
     var actualPosition = 0;
+    lateinit var mAdView : AdView
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+            MobileAds.initialize(this) {}
+
+            mAdView = findViewById(R.id.adView)
+            val adRequest = AdRequest.Builder().build()
+            mAdView.loadAd(adRequest)
+
 
 
             val displayMetrics = DisplayMetrics()
@@ -30,12 +41,6 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-            infoTeam.setOnClickListener {
-                println("INFO")
-                Intent(this, About::class.java).apply {
-                    startActivity(this)
-                }
-            }
 
             mySong = MediaPlayer.create(this,R.raw.bgmusic)
         mySong.isLooping = true;

@@ -2,10 +2,17 @@ package com.vendetta.facmat
 
 import android.content.Intent
 import android.media.MediaPlayer
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import kotlinx.android.synthetic.main.activity_suma_level.*
 import java.lang.Integer.parseInt
 import java.util.*
@@ -22,9 +29,14 @@ class SumaLevel : AppCompatActivity() {
     lateinit var tempo:CountDownTimer
     var iscronometro = false
     var actualPosition = 0
+    private var onBtnBack = false
+    var mInterstitialAd: InterstitialAd? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_suma_level)
+        //loadFullAd()
+
 
         actualPosition = intent.getIntExtra("actualPosition",20)
         mySong = MediaPlayer.create(this,R.raw.bgmusic)
@@ -42,8 +54,75 @@ class SumaLevel : AppCompatActivity() {
 
     }
 
+
+    fun loadFullAd(){
+        var adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                println("Fail Ad")
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                println("Ad was load")
+                mInterstitialAd = interstitialAd
+                mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+                    override fun onAdClicked() {
+                        // Called when a click is recorded for an ad.
+                        println("Ad was clicked.")
+                    }
+
+                    override fun onAdDismissedFullScreenContent() {
+                        // Called when ad is dismissed.
+                        println("Ad dismissed fullscreen content.")
+                        mInterstitialAd = null
+                        callAnotherScreen()
+                    }
+
+                    override fun onAdFailedToShowFullScreenContent(p0: AdError) {
+                        // Called when ad fails to show.
+                        println("Ad failed to show fullscreen content.")
+                        mInterstitialAd = null
+                    }
+
+                    override fun onAdImpression() {
+                        // Called when an impression is recorded for an ad.
+                        println("Ad recorded an impression.")
+                    }
+
+                    override fun onAdShowedFullScreenContent() {
+                        // Called when ad is shown.
+                        println("Ad sucess FULL")
+                        //callAnotherScreen()
+                    }
+                }
+            }
+        })
+
+
+    }
+
+    fun  callAnotherScreen(){
+        if(!onBtnBack) {
+            Intent(this, Resultado::class.java).apply {
+                this.putExtra("rpuntuacion", acertadasPuntuacion)
+                this.putExtra("fpuntuacion", erradasPuntuacion)
+                this.putExtra("tpuntuacion", totalPuntuacion)
+                startActivity(this)
+            }
+        }else{
+            Intent(this,Levels::class.java).apply {
+                this.putExtra("actualPosition",mySong.currentPosition)
+                startActivity(this)
+            }
+        }
+    }
+
     override fun onStart() {
         super.onStart()
+
+        loadFullAd()
+        onBtnBack = false
 
         iscronometro = intent.getBooleanExtra("iscronometro",false)
         if(iscronometro){
@@ -75,12 +154,15 @@ class SumaLevel : AppCompatActivity() {
     }
 
     fun gotoResultado(){
+        if (mInterstitialAd != null) {
+            mInterstitialAd?.show(this)
+        }/*
         Intent(this, Resultado::class.java).apply {
             this.putExtra("rpuntuacion",acertadasPuntuacion)
             this.putExtra("fpuntuacion", erradasPuntuacion)
             this.putExtra("tpuntuacion",totalPuntuacion)
             startActivity(this)
-        }
+        }*/
     }
 
     fun makeChoice(position: Int){
@@ -178,9 +260,12 @@ class SumaLevel : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        Intent(this,Levels::class.java).apply {
-            this.putExtra("actualPosition",mySong.currentPosition)
-            startActivity(this)
+        onBtnBack = true
+        if (mInterstitialAd != null) {
+            mInterstitialAd?.show(this)
         }
+
         }
 }
+
+

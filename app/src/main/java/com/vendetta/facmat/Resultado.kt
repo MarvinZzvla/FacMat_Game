@@ -2,10 +2,9 @@ package com.vendetta.facmat
 
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_resultado.*
-import java.util.logging.Level
 
 class Resultado : AppCompatActivity() {
     var maxPuntaje = 0
@@ -20,6 +19,7 @@ class Resultado : AppCompatActivity() {
         happyface.setOnClickListener {
             onBackPressed();
         }
+
     }
 
     override fun onStart() {
