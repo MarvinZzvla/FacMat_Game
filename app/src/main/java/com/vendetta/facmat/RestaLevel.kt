@@ -71,7 +71,7 @@ class RestaLevel : AppCompatActivity() {
 
     fun loadFullAd(){
         var adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+        InterstitialAd.load(this,"ca-app-pub-2467116940009132/4331505671", adRequest, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 println("Fail Ad")
                 mInterstitialAd = null
@@ -152,13 +152,16 @@ class RestaLevel : AppCompatActivity() {
     }
 
     fun gotoResultado(){
+        if (mInterstitialAd != null) {
+            mInterstitialAd?.show(this)
+        }/*
         Intent(this, Resultado::class.java).apply {
             this.putExtra("rpuntuacion",acertadasPuntuacion)
             this.putExtra("fpuntuacion", erradasPuntuacion)
             this.putExtra("tpuntuacion",totalPuntuacion)
             startActivity(this)
-        }
-    } /*Cambios*/
+        }*/
+    }/*Cambios*/
 
     fun makeChoice(position: Int){
         if(getResult(position))
@@ -258,9 +261,10 @@ class RestaLevel : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        Intent(this,Levels::class.java).apply {
-            this.putExtra("actualPosition",mySong.currentPosition)
-            startActivity(this)
+        onBtnBack = true
+        if (mInterstitialAd != null) {
+            mInterstitialAd?.show(this)
         }
+
     }
 }

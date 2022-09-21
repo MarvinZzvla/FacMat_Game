@@ -2,8 +2,10 @@ package com.vendetta.facmat
 
 
 import android.os.Bundle
+
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+
 import kotlinx.android.synthetic.main.activity_about.*
 
 class About : AppCompatActivity() {

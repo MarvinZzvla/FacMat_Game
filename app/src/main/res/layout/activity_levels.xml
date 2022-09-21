@@ -8,7 +8,7 @@
     android:background="@drawable/backgroundapp">
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -46,13 +46,14 @@
             android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:padding="10dp"
-            android:text="FACMAT!"
+
+            android:text="EASYMATH!"
             android:textColor="@color/white"
             android:textSize="32dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/imageView3"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toEndOf="@+id/level_logoapp"
             app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     <ImageButton
@@ -177,20 +178,21 @@
         app:layout_constraintTop_toTopOf="@+id/level_divide" />
 
         <ImageButton
+            android:layout_marginTop="20dp"
             android:id="@+id/btnCronometro"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:background="@drawable/pizarrabg"
             android:scaleType="fitXY"
             android:src="@drawable/cronometro"
-            android:layout_marginTop="30dp"
-            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/level_divide" />
+            app:layout_constraintTop_toBottomOf="@+id/adViewLevels" />
 
         <ImageButton
+            android:layout_marginTop="20dp"
             android:id="@+id/btnIlimitado"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -201,9 +203,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnCronometro" />
+            app:layout_constraintTop_toBottomOf="@+id/adViewLevels" />
+
+        <com.google.android.gms.ads.AdView
+            android:layout_marginTop="20dp"
+            android:id="@+id/adViewLevels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_down"
+            app:layout_constraintEnd_toEndOf="@+id/level_divide"
+            app:layout_constraintStart_toStartOf="@+id/level_divide"
+            app:layout_constraintTop_toBottomOf="@+id/level_divide" />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
