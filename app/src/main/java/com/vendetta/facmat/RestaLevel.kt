@@ -97,6 +97,7 @@ class RestaLevel : AppCompatActivity() {
                         // Called when ad fails to show.
                         println("Ad failed to show fullscreen content.")
                         mInterstitialAd = null
+                        callAnotherScreen()
                     }
 
                     override fun onAdImpression() {
@@ -154,7 +155,11 @@ class RestaLevel : AppCompatActivity() {
     fun gotoResultado(){
         if (mInterstitialAd != null) {
             mInterstitialAd?.show(this)
-        }/*
+        }
+        else{
+            callAnotherScreen()
+        }
+    /*
         Intent(this, Resultado::class.java).apply {
             this.putExtra("rpuntuacion",acertadasPuntuacion)
             this.putExtra("fpuntuacion", erradasPuntuacion)
